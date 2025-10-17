@@ -1,34 +1,31 @@
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.*;
 
 public class Main {
     public static void main(String[] args) {
-        Animal animalInvalide = new Animal("", "", -5, true);
 
-        Zoo zooInvalide = new Zoo("", "Ville", 10);
+        Aquatic aquatic = new Aquatic();
+        Terrestrial terrestrial = new Terrestrial();
+        Dolphin dolphin = new Dolphin();
+        Penguin penguin = new Penguin();
 
-        Zoo zoo1 = new Zoo("Zoo de Tunis", "Tunis", 10);
-        Zoo zoo2 = new Zoo("Zoo de Sousse", "Sousse", 15);
 
-        zoo1.addAnimal(new Animal("Panthera", "Simba", 5, true));
-        zoo1.addAnimal(new Animal("Elephantidae", "Dumbo", 10, true));
+        Aquatic aquatic2 = new Aquatic("Poisson", "Nemo", 2, true, "Océan");
+        Terrestrial terrestrial2 = new Terrestrial("Félin", "Lion", 5, true, 4);
+        Dolphin dolphin2 = new Dolphin("Delphinidés", "Flipper", 10, true, "Océan", 56.8f);
+        Penguin penguin2 = new Penguin("Sphéniscidés", "Tux", 3, true, "Antarctique", 150.5f);
 
-        zoo2.addAnimal(new Animal("Panthera", "Rajah", 4, true));
-        zoo2.addAnimal(new Animal("Giraffidae", "Spots", 7, true));
-        zoo2.addAnimal(new Animal("Ursidae", "Baloo", 8, true));
 
-        Zoo plusGrandZoo = Zoo.comparerZoo(zoo1, zoo2);
+        System.out.println("=== Affichage des animaux ===");
+        System.out.println(aquatic2);
+        System.out.println(terrestrial2);
+        System.out.println(dolphin2);
+        System.out.println(penguin2);
 
-        if (plusGrandZoo != null) {
-            System.out.println("Le zoo avec le plus d'animaux est: " + plusGrandZoo.getName());
-        } else {
-            System.out.println("Les deux zoos ont le même nombre d'animaux");
-        }
 
-        System.out.println("Zoo1 est plein: " + zoo1.isZooFull());
-        zoo1.displayZoo();
-        zoo2.displayZoo();
+        System.out.println("\n=== Comportement de nage ===");
+        aquatic2.swim();
+        dolphin2.swim();
     }
 }
