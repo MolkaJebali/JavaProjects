@@ -6,7 +6,7 @@ public class Animal {
     private int age;
     private boolean isMammal;
 
-    public Animal(String family, String name, int age, boolean isMammal) {
+    public Animal(String family, String name, int age, boolean isMammal) throws InvalidAgeException {
         setFamily(family);
         setName(name);
         setAge(age);
@@ -32,12 +32,11 @@ public class Animal {
     }
 
     public int getAge() { return age; }
-    public void setAge(int age) {
+    public void setAge(int age) throws InvalidAgeException {
         if (age >= 0) {
             this.age = age;
         } else {
-            System.out.println("Erreur: L'âge ne peut pas être négatif");
-            this.age = 0;
+            throw new InvalidAgeException("Erreur: L'âge ne peut pas être négatif - âge reçu: " + age);
         }
     }
 
