@@ -69,5 +69,33 @@ public class Main {
         } catch (InvalidAgeException e) {
             System.out.println("Exception InvalidAgeException: " + e.getMessage());
         }
+
+         try {
+        System.out.println("\n=== Test des nouvelles interfaces ===");
+
+        Aquatic dolphin = new Dolphin("Delphinidés", "Flipper", 10, true, "Océan", 56.8f);
+        Penguin penguin = new Penguin("Sphéniscidés", "Tux", 3, true, "Antarctique", 150.5f);
+        Terrestrial terrestrial = new Terrestrial("Canidés", "Wolf", 4, true, 4);
+
+
+        System.out.println("\n-- Test Aquatic (Carnivore) --");
+        dolphin.eatMeat(Food.MEAT);
+        dolphin.eatMeat(Food.PLANT);
+
+
+        System.out.println("\n-- Test Penguin (Carnivore) --");
+        penguin.eatMeat(Food.MEAT);
+        penguin.eatMeat(Food.BOTH);
+
+
+        System.out.println("\n-- Test Terrestrial (Omnivore) --");
+        terrestrial.eatMeat(Food.MEAT);
+        terrestrial.eatPlant(Food.PLANT);
+        terrestrial.eatPlantAndMeat(Food.BOTH);
+        terrestrial.eatPlantAndMeat(Food.MEAT);
+
+    } catch (InvalidAgeException e) {
+        System.out.println("Exception InvalidAgeException: " + e.getMessage());
     }
+}
 }

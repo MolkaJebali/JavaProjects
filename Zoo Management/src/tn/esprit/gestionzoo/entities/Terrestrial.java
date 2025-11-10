@@ -1,6 +1,6 @@
 package tn.esprit.gestionzoo.entities;
 
-public class Terrestrial extends Animal {
+public class Terrestrial extends Animal implements Omnivore<Food> {
     private int nbrLegs;
 
     public Terrestrial() throws InvalidAgeException {
@@ -24,5 +24,31 @@ public class Terrestrial extends Animal {
     @Override
     public String toString() {
         return super.toString() + ", nbrLegs=" + nbrLegs;
+    }
+    @Override
+    public void eatMeat(Food meat) {
+        if (meat == Food.MEAT || meat == Food.BOTH) {
+            System.out.println("This terrestrial animal is eating meat.");
+        } else {
+            System.out.println("This terrestrial animal cannot eat this food.");
+        }
+    }
+
+    @Override
+    public void eatPlant(Food plant) {
+        if (plant == Food.PLANT || plant == Food.BOTH) {
+            System.out.println("This terrestrial animal is eating plants.");
+        } else {
+            System.out.println("This terrestrial animal cannot eat this food.");
+        }
+    }
+
+    @Override
+    public void eatPlantAndMeat(Food food) {
+        if (food == Food.BOTH) {
+            System.out.println("This terrestrial animal is eating both plants and meat.");
+        } else {
+            System.out.println("This terrestrial animal needs both types of food.");
+        }
     }
 }

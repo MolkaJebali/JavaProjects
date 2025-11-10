@@ -1,6 +1,6 @@
 package tn.esprit.gestionzoo.entities;
 
-public abstract class Aquatic extends Animal {
+public abstract class Aquatic extends Animal implements Carnivore<Food> {
     private String habitat;
 
     public Aquatic() throws InvalidAgeException {
@@ -36,5 +36,13 @@ public abstract class Aquatic extends Animal {
         return getName().equals(aquatic.getName()) &&
                 getAge() == aquatic.getAge() &&
                 habitat.equals(aquatic.habitat);
+    }
+    @Override
+    public void eatMeat(Food meat) {
+        if (meat == Food.MEAT || meat == Food.BOTH) {
+            System.out.println("This aquatic animal is eating meat.");
+        } else {
+            System.out.println("This aquatic animal cannot eat this food.");
+        }
     }
 }
