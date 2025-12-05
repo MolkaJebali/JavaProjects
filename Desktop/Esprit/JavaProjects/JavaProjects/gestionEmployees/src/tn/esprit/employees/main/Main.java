@@ -5,6 +5,9 @@ import tn.esprit.employees.implementations.AffectationHashMap;
 import tn.esprit.employees.implementations.SocieteArrayList;
 import tn.esprit.employees.implementations.DepartementHashSet;
 import java.util.TreeSet;
+import tn.esprit.employees.entities.Etudiant;
+import tn.esprit.employees.implementations.StudentManagement;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -71,5 +74,55 @@ public class Main {
 
         System.out.println("\n=== Tous les départements ===");
         gestionDepartements.displayDepartement();
+
     }
+    {
+    List<Etudiant> etudiants = new ArrayList<>();
+        etudiants.add(new Etudiant(1, "Alice", 20));
+        etudiants.add(new Etudiant(3, "Bob", 22));
+        etudiants.add(new Etudiant(2, "Charlie", 21));
+        etudiants.add(new Etudiant(4, "David", 23));
+
+    // Création du StudentManagement
+    StudentManagement studentManagement = new StudentManagement();
+
+    // 1. Test displayStudents
+        System.out.println("\n1. Affichage des étudiants:");
+        studentManagement.displayStudents(etudiants, e -> System.out.println("  - " + e));
+
+    // 2. Test displayStudentsByFilter (étudiants de plus de 21 ans)
+        System.out.println("\n2. Étudiants de plus de 21 ans:");
+        studentManagement.displayStudentsByFilter(
+    etudiants,
+    e -> e.getAge() > 21,
+    e -> System.out.println("  - " + e.getNom() + " (" + e.getAge() + " ans)")
+            );
+
+    // 3. Test returnStudentsNames
+        System.out.println("\n3. Noms des étudiants concaténés:");
+    String noms = studentManagement.returnStudentsNames(etudiants, Etudiant::getNom);
+        System.out.println("  Noms: " + noms);
+
+    // 4. Test createStudent
+        System.out.println("\n4. Création d'un nouvel étudiant:");
+    Etudiant nouvelEtudiant = studentManagement.createStudent(() -> new Etudiant(5, "Emma", 19));
+        System.out.println("  Nouvel étudiant: " + nouvelEtudiant);
+
+    // 5. Test sortStudentsById
+        System.out.println("\n5. Étudiants triés par ID:");
+    List<Etudiant> etudiantsTries = studentManagement.sortStudentsById(
+            etudiants,
+            Comparator.comparingInt(Etudiant::getId)
+    );
+        etudiantsTries.forEach(e -> System.out.println("  - " + e));
+
+    // 6. Test convertToStream
+        System.out.println("\n6. Utilisation du Stream:");
+        studentManagement.convertToStream(etudiants)
+            .filter(e -> e.getAge() < 22)
+            .map(e -> e.getNom().toUpperCase())
+            .forEach(nom -> System.out.println("  - " + nom));
+}
+
+
 }
